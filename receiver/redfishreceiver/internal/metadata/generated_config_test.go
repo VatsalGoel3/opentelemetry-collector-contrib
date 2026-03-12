@@ -26,40 +26,54 @@ func TestMetricsBuilderConfig(t *testing.T) {
 			name: "all_set",
 			want: MetricsBuilderConfig{
 				Metrics: MetricsConfig{
-					ChassisPowerstate: MetricConfig{
+					ChassisPowerstate: ChassisPowerstateConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []ChassisPowerstateAttributeKey{ChassisPowerstateAttributeKeyChassisID, ChassisPowerstateAttributeKeyChassisAssetTag, ChassisPowerstateAttributeKeyChassisModel, ChassisPowerstateAttributeKeyChassisName, ChassisPowerstateAttributeKeyChassisManufacturer, ChassisPowerstateAttributeKeyChassisSerialNumber, ChassisPowerstateAttributeKeyChassisSku, ChassisPowerstateAttributeKeyChassisChassisType},
+					},
+					ChassisStatusHealth: ChassisStatusHealthConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []ChassisStatusHealthAttributeKey{ChassisStatusHealthAttributeKeyChassisID, ChassisStatusHealthAttributeKeyChassisAssetTag, ChassisStatusHealthAttributeKeyChassisModel, ChassisStatusHealthAttributeKeyChassisName, ChassisStatusHealthAttributeKeyChassisManufacturer, ChassisStatusHealthAttributeKeyChassisSerialNumber, ChassisStatusHealthAttributeKeyChassisSku, ChassisStatusHealthAttributeKeyChassisChassisType},
+					},
+					ChassisStatusState: ChassisStatusStateConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []ChassisStatusStateAttributeKey{ChassisStatusStateAttributeKeyChassisID, ChassisStatusStateAttributeKeyChassisAssetTag, ChassisStatusStateAttributeKeyChassisModel, ChassisStatusStateAttributeKeyChassisName, ChassisStatusStateAttributeKeyChassisManufacturer, ChassisStatusStateAttributeKeyChassisSerialNumber, ChassisStatusStateAttributeKeyChassisSku, ChassisStatusStateAttributeKeyChassisChassisType},
+					},
+					FanReading: FanReadingConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []FanReadingAttributeKey{FanReadingAttributeKeyChassisID, FanReadingAttributeKeyFanName, FanReadingAttributeKeyFanReadingUnits},
+					},
+					FanStatusHealth: FanStatusHealthConfig{
 						Enabled: true,
 					},
-					ChassisStatusHealth: MetricConfig{
+					FanStatusState: FanStatusStateConfig{
 						Enabled: true,
 					},
-					ChassisStatusState: MetricConfig{
+					SystemPowerstate: SystemPowerstateConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []SystemPowerstateAttributeKey{SystemPowerstateAttributeKeySystemID, SystemPowerstateAttributeKeySystemAssetTag, SystemPowerstateAttributeKeySystemBiosVersion, SystemPowerstateAttributeKeySystemModel, SystemPowerstateAttributeKeySystemName, SystemPowerstateAttributeKeySystemManufacturer, SystemPowerstateAttributeKeySystemSerialNumber, SystemPowerstateAttributeKeySystemSku, SystemPowerstateAttributeKeySystemSystemType},
+					},
+					SystemStatusHealth: SystemStatusHealthConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []SystemStatusHealthAttributeKey{SystemStatusHealthAttributeKeySystemID, SystemStatusHealthAttributeKeySystemAssetTag, SystemStatusHealthAttributeKeySystemBiosVersion, SystemStatusHealthAttributeKeySystemModel, SystemStatusHealthAttributeKeySystemName, SystemStatusHealthAttributeKeySystemManufacturer, SystemStatusHealthAttributeKeySystemSerialNumber, SystemStatusHealthAttributeKeySystemSku, SystemStatusHealthAttributeKeySystemSystemType},
+					},
+					SystemStatusState: SystemStatusStateConfig{
+						Enabled:             true,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []SystemStatusStateAttributeKey{SystemStatusStateAttributeKeySystemID, SystemStatusStateAttributeKeySystemAssetTag, SystemStatusStateAttributeKeySystemBiosVersion, SystemStatusStateAttributeKeySystemModel, SystemStatusStateAttributeKeySystemName, SystemStatusStateAttributeKeySystemManufacturer, SystemStatusStateAttributeKeySystemSerialNumber, SystemStatusStateAttributeKeySystemSku, SystemStatusStateAttributeKeySystemSystemType},
+					},
+					TemperatureReading: TemperatureReadingConfig{
 						Enabled: true,
 					},
-					FanReading: MetricConfig{
+					TemperatureStatusHealth: TemperatureStatusHealthConfig{
 						Enabled: true,
 					},
-					FanStatusHealth: MetricConfig{
-						Enabled: true,
-					},
-					FanStatusState: MetricConfig{
-						Enabled: true,
-					},
-					SystemPowerstate: MetricConfig{
-						Enabled: true,
-					},
-					SystemStatusHealth: MetricConfig{
-						Enabled: true,
-					},
-					SystemStatusState: MetricConfig{
-						Enabled: true,
-					},
-					TemperatureReading: MetricConfig{
-						Enabled: true,
-					},
-					TemperatureStatusHealth: MetricConfig{
-						Enabled: true,
-					},
-					TemperatureStatusState: MetricConfig{
+					TemperatureStatusState: TemperatureStatusStateConfig{
 						Enabled: true,
 					},
 				},
@@ -73,40 +87,54 @@ func TestMetricsBuilderConfig(t *testing.T) {
 			name: "none_set",
 			want: MetricsBuilderConfig{
 				Metrics: MetricsConfig{
-					ChassisPowerstate: MetricConfig{
+					ChassisPowerstate: ChassisPowerstateConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []ChassisPowerstateAttributeKey{ChassisPowerstateAttributeKeyChassisID, ChassisPowerstateAttributeKeyChassisAssetTag, ChassisPowerstateAttributeKeyChassisModel, ChassisPowerstateAttributeKeyChassisName, ChassisPowerstateAttributeKeyChassisManufacturer, ChassisPowerstateAttributeKeyChassisSerialNumber, ChassisPowerstateAttributeKeyChassisSku, ChassisPowerstateAttributeKeyChassisChassisType},
+					},
+					ChassisStatusHealth: ChassisStatusHealthConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []ChassisStatusHealthAttributeKey{ChassisStatusHealthAttributeKeyChassisID, ChassisStatusHealthAttributeKeyChassisAssetTag, ChassisStatusHealthAttributeKeyChassisModel, ChassisStatusHealthAttributeKeyChassisName, ChassisStatusHealthAttributeKeyChassisManufacturer, ChassisStatusHealthAttributeKeyChassisSerialNumber, ChassisStatusHealthAttributeKeyChassisSku, ChassisStatusHealthAttributeKeyChassisChassisType},
+					},
+					ChassisStatusState: ChassisStatusStateConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []ChassisStatusStateAttributeKey{ChassisStatusStateAttributeKeyChassisID, ChassisStatusStateAttributeKeyChassisAssetTag, ChassisStatusStateAttributeKeyChassisModel, ChassisStatusStateAttributeKeyChassisName, ChassisStatusStateAttributeKeyChassisManufacturer, ChassisStatusStateAttributeKeyChassisSerialNumber, ChassisStatusStateAttributeKeyChassisSku, ChassisStatusStateAttributeKeyChassisChassisType},
+					},
+					FanReading: FanReadingConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []FanReadingAttributeKey{FanReadingAttributeKeyChassisID, FanReadingAttributeKeyFanName, FanReadingAttributeKeyFanReadingUnits},
+					},
+					FanStatusHealth: FanStatusHealthConfig{
 						Enabled: false,
 					},
-					ChassisStatusHealth: MetricConfig{
+					FanStatusState: FanStatusStateConfig{
 						Enabled: false,
 					},
-					ChassisStatusState: MetricConfig{
+					SystemPowerstate: SystemPowerstateConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []SystemPowerstateAttributeKey{SystemPowerstateAttributeKeySystemID, SystemPowerstateAttributeKeySystemAssetTag, SystemPowerstateAttributeKeySystemBiosVersion, SystemPowerstateAttributeKeySystemModel, SystemPowerstateAttributeKeySystemName, SystemPowerstateAttributeKeySystemManufacturer, SystemPowerstateAttributeKeySystemSerialNumber, SystemPowerstateAttributeKeySystemSku, SystemPowerstateAttributeKeySystemSystemType},
+					},
+					SystemStatusHealth: SystemStatusHealthConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []SystemStatusHealthAttributeKey{SystemStatusHealthAttributeKeySystemID, SystemStatusHealthAttributeKeySystemAssetTag, SystemStatusHealthAttributeKeySystemBiosVersion, SystemStatusHealthAttributeKeySystemModel, SystemStatusHealthAttributeKeySystemName, SystemStatusHealthAttributeKeySystemManufacturer, SystemStatusHealthAttributeKeySystemSerialNumber, SystemStatusHealthAttributeKeySystemSku, SystemStatusHealthAttributeKeySystemSystemType},
+					},
+					SystemStatusState: SystemStatusStateConfig{
+						Enabled:             false,
+						AggregationStrategy: AggregationStrategyAvg,
+						EnabledAttributes:   []SystemStatusStateAttributeKey{SystemStatusStateAttributeKeySystemID, SystemStatusStateAttributeKeySystemAssetTag, SystemStatusStateAttributeKeySystemBiosVersion, SystemStatusStateAttributeKeySystemModel, SystemStatusStateAttributeKeySystemName, SystemStatusStateAttributeKeySystemManufacturer, SystemStatusStateAttributeKeySystemSerialNumber, SystemStatusStateAttributeKeySystemSku, SystemStatusStateAttributeKeySystemSystemType},
+					},
+					TemperatureReading: TemperatureReadingConfig{
 						Enabled: false,
 					},
-					FanReading: MetricConfig{
+					TemperatureStatusHealth: TemperatureStatusHealthConfig{
 						Enabled: false,
 					},
-					FanStatusHealth: MetricConfig{
-						Enabled: false,
-					},
-					FanStatusState: MetricConfig{
-						Enabled: false,
-					},
-					SystemPowerstate: MetricConfig{
-						Enabled: false,
-					},
-					SystemStatusHealth: MetricConfig{
-						Enabled: false,
-					},
-					SystemStatusState: MetricConfig{
-						Enabled: false,
-					},
-					TemperatureReading: MetricConfig{
-						Enabled: false,
-					},
-					TemperatureStatusHealth: MetricConfig{
-						Enabled: false,
-					},
-					TemperatureStatusState: MetricConfig{
+					TemperatureStatusState: TemperatureStatusStateConfig{
 						Enabled: false,
 					},
 				},
@@ -120,7 +148,7 @@ func TestMetricsBuilderConfig(t *testing.T) {
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			cfg := loadMetricsBuilderConfig(t, tt.name)
-			diff := cmp.Diff(tt.want, cfg, cmpopts.IgnoreUnexported(MetricConfig{}, ResourceAttributeConfig{}))
+			diff := cmp.Diff(tt.want, cfg, cmpopts.IgnoreUnexported(ChassisPowerstateConfig{}, ChassisStatusHealthConfig{}, ChassisStatusStateConfig{}, FanReadingConfig{}, FanStatusHealthConfig{}, FanStatusStateConfig{}, SystemPowerstateConfig{}, SystemStatusHealthConfig{}, SystemStatusStateConfig{}, TemperatureReadingConfig{}, TemperatureStatusHealthConfig{}, TemperatureStatusStateConfig{}, ResourceAttributeConfig{}))
 			require.Emptyf(t, diff, "Config mismatch (-expected +actual):\n%s", diff)
 		})
 	}

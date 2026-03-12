@@ -11,6 +11,36 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "chassis.id"
+                - "chassis.asset_tag"
+                - "chassis.model"
+                - "chassis.name"
+                - "chassis.manufacturer"
+                - "chassis.serial_number"
+                - "chassis.sku"
+                - "chassis.chassis_type"
+            default:
+              - "chassis.id"
+              - "chassis.asset_tag"
+              - "chassis.model"
+              - "chassis.name"
+              - "chassis.manufacturer"
+              - "chassis.serial_number"
+              - "chassis.sku"
+              - "chassis.chassis_type"
       chassis.status.health:
         description: "ChassisStatusHealthConfig provides config for the chassis.status.health metric."
         type: object
@@ -18,6 +48,36 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "chassis.id"
+                - "chassis.asset_tag"
+                - "chassis.model"
+                - "chassis.name"
+                - "chassis.manufacturer"
+                - "chassis.serial_number"
+                - "chassis.sku"
+                - "chassis.chassis_type"
+            default:
+              - "chassis.id"
+              - "chassis.asset_tag"
+              - "chassis.model"
+              - "chassis.name"
+              - "chassis.manufacturer"
+              - "chassis.serial_number"
+              - "chassis.sku"
+              - "chassis.chassis_type"
       chassis.status.state:
         description: "ChassisStatusStateConfig provides config for the chassis.status.state metric."
         type: object
@@ -25,6 +85,36 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "chassis.id"
+                - "chassis.asset_tag"
+                - "chassis.model"
+                - "chassis.name"
+                - "chassis.manufacturer"
+                - "chassis.serial_number"
+                - "chassis.sku"
+                - "chassis.chassis_type"
+            default:
+              - "chassis.id"
+              - "chassis.asset_tag"
+              - "chassis.model"
+              - "chassis.name"
+              - "chassis.manufacturer"
+              - "chassis.serial_number"
+              - "chassis.sku"
+              - "chassis.chassis_type"
       fan.reading:
         description: "FanReadingConfig provides config for the fan.reading metric."
         type: object
@@ -32,6 +122,26 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "chassis.id"
+                - "fan.name"
+                - "fan.reading_units"
+            default:
+              - "chassis.id"
+              - "fan.name"
+              - "fan.reading_units"
       fan.status.health:
         description: "FanStatusHealthConfig provides config for the fan.status.health metric."
         type: object
@@ -53,6 +163,38 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "system.id"
+                - "system.asset_tag"
+                - "system.bios_version"
+                - "system.model"
+                - "system.name"
+                - "system.manufacturer"
+                - "system.serial_number"
+                - "system.sku"
+                - "system.system_type"
+            default:
+              - "system.id"
+              - "system.asset_tag"
+              - "system.bios_version"
+              - "system.model"
+              - "system.name"
+              - "system.manufacturer"
+              - "system.serial_number"
+              - "system.sku"
+              - "system.system_type"
       system.status.health:
         description: "SystemStatusHealthConfig provides config for the system.status.health metric."
         type: object
@@ -60,6 +202,38 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "system.id"
+                - "system.asset_tag"
+                - "system.bios_version"
+                - "system.model"
+                - "system.name"
+                - "system.manufacturer"
+                - "system.serial_number"
+                - "system.sku"
+                - "system.system_type"
+            default:
+              - "system.id"
+              - "system.asset_tag"
+              - "system.bios_version"
+              - "system.model"
+              - "system.name"
+              - "system.manufacturer"
+              - "system.serial_number"
+              - "system.sku"
+              - "system.system_type"
       system.status.state:
         description: "SystemStatusStateConfig provides config for the system.status.state metric."
         type: object
@@ -67,6 +241,38 @@ $defs:
           enabled:
             type: boolean
             default: true
+          aggregation_strategy:
+            type: string
+            enum:
+              - "sum"
+              - "avg"
+              - "min"
+              - "max"
+            default: "avg"
+          attributes:
+            type: array
+            items:
+              type: string
+              enum:
+                - "system.id"
+                - "system.asset_tag"
+                - "system.bios_version"
+                - "system.model"
+                - "system.name"
+                - "system.manufacturer"
+                - "system.serial_number"
+                - "system.sku"
+                - "system.system_type"
+            default:
+              - "system.id"
+              - "system.asset_tag"
+              - "system.bios_version"
+              - "system.model"
+              - "system.name"
+              - "system.manufacturer"
+              - "system.serial_number"
+              - "system.sku"
+              - "system.system_type"
       temperature.reading:
         description: "TemperatureReadingConfig provides config for the temperature.reading metric."
         type: object

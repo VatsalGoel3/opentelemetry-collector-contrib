@@ -3,22 +3,67 @@ all_set:
   metrics:
     chassis.powerstate:
       enabled: true
+      attributes: ["chassis.id","chassis.asset_tag","chassis.model","chassis.name","chassis.manufacturer","chassis.serial_number","chassis.sku","chassis.chassis_type"]
     chassis.status.health:
       enabled: true
+      attributes: ["chassis.id","chassis.asset_tag","chassis.model","chassis.name","chassis.manufacturer","chassis.serial_number","chassis.sku","chassis.chassis_type"]
     chassis.status.state:
       enabled: true
+      attributes: ["chassis.id","chassis.asset_tag","chassis.model","chassis.name","chassis.manufacturer","chassis.serial_number","chassis.sku","chassis.chassis_type"]
     fan.reading:
       enabled: true
+      attributes: ["chassis.id","fan.name","fan.reading_units"]
     fan.status.health:
       enabled: true
     fan.status.state:
       enabled: true
     system.powerstate:
       enabled: true
+      attributes: ["system.id","system.asset_tag","system.bios_version","system.model","system.name","system.manufacturer","system.serial_number","system.sku","system.system_type"]
     system.status.health:
       enabled: true
+      attributes: ["system.id","system.asset_tag","system.bios_version","system.model","system.name","system.manufacturer","system.serial_number","system.sku","system.system_type"]
     system.status.state:
       enabled: true
+      attributes: ["system.id","system.asset_tag","system.bios_version","system.model","system.name","system.manufacturer","system.serial_number","system.sku","system.system_type"]
+    temperature.reading:
+      enabled: true
+    temperature.status.health:
+      enabled: true
+    temperature.status.state:
+      enabled: true
+  resource_attributes:
+    host.name:
+      enabled: true
+    url.full:
+      enabled: true
+reaggregate_set:
+  metrics:
+    chassis.powerstate:
+      enabled: true
+      attributes: ["chassis.id"]
+    chassis.status.health:
+      enabled: true
+      attributes: ["chassis.id"]
+    chassis.status.state:
+      enabled: true
+      attributes: ["chassis.id"]
+    fan.reading:
+      enabled: true
+      attributes: ["chassis.id","fan.name"]
+    fan.status.health:
+      enabled: true
+    fan.status.state:
+      enabled: true
+    system.powerstate:
+      enabled: true
+      attributes: ["system.id"]
+    system.status.health:
+      enabled: true
+      attributes: ["system.id"]
+    system.status.state:
+      enabled: true
+      attributes: ["system.id"]
     temperature.reading:
       enabled: true
     temperature.status.health:
@@ -34,22 +79,29 @@ none_set:
   metrics:
     chassis.powerstate:
       enabled: false
+      attributes: ["chassis.id","chassis.asset_tag","chassis.model","chassis.name","chassis.manufacturer","chassis.serial_number","chassis.sku","chassis.chassis_type"]
     chassis.status.health:
       enabled: false
+      attributes: ["chassis.id","chassis.asset_tag","chassis.model","chassis.name","chassis.manufacturer","chassis.serial_number","chassis.sku","chassis.chassis_type"]
     chassis.status.state:
       enabled: false
+      attributes: ["chassis.id","chassis.asset_tag","chassis.model","chassis.name","chassis.manufacturer","chassis.serial_number","chassis.sku","chassis.chassis_type"]
     fan.reading:
       enabled: false
+      attributes: ["chassis.id","fan.name","fan.reading_units"]
     fan.status.health:
       enabled: false
     fan.status.state:
       enabled: false
     system.powerstate:
       enabled: false
+      attributes: ["system.id","system.asset_tag","system.bios_version","system.model","system.name","system.manufacturer","system.serial_number","system.sku","system.system_type"]
     system.status.health:
       enabled: false
+      attributes: ["system.id","system.asset_tag","system.bios_version","system.model","system.name","system.manufacturer","system.serial_number","system.sku","system.system_type"]
     system.status.state:
       enabled: false
+      attributes: ["system.id","system.asset_tag","system.bios_version","system.model","system.name","system.manufacturer","system.serial_number","system.sku","system.system_type"]
     temperature.reading:
       enabled: false
     temperature.status.health:

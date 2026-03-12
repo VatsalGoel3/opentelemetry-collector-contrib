@@ -1,6 +1,8 @@
 display_name: Redfish Receiver
 type: redfish
 
+reaggregation_enabled: true
+
 description: |
   This receiver fetches metrics for a server running a [Redfish](https://en.wikipedia.org/wiki/Redfish_(specification))
   API.
@@ -26,63 +28,83 @@ attributes:
   chassis.asset_tag:
     description: Chassis asset tag.
     type: string
+    requirement_level: recommended
   chassis.chassis_type:
     description: Chassis type.
     type: string
+    requirement_level: recommended
   chassis.id:
     description: Chassis id.
     type: string
+    requirement_level: required
   chassis.manufacturer:
     description: Chassis manufacturer.
     type: string
+    requirement_level: recommended
   chassis.model:
     description: Chassis model.
     type: string
+    requirement_level: recommended
   chassis.name:
     description: Chassis name.
     type: string
+    requirement_level: recommended
   chassis.serial_number:
     description: Chassis serial number.
     type: string
+    requirement_level: recommended
   chassis.sku:
     description: Chassis sku.
     type: string
+    requirement_level: recommended
   fan.name:
     description: Fan name.
     type: string
+    requirement_level: required
   fan.reading_units:
     description: Fan reading units.
     type: string
+    requirement_level: recommended
   system.asset_tag:
     description: System asset tag.
     type: string
+    requirement_level: recommended
   system.bios_version:
     description: System bios version.
     type: string
+    requirement_level: recommended
   system.id:
     description: System id.
     type: string
+    requirement_level: required
   system.manufacturer:
     description: System manufacturer.
     type: string
+    requirement_level: recommended
   system.model:
     description: System model.
     type: string
+    requirement_level: recommended
   system.name:
     description: System name.
     type: string
+    requirement_level: recommended
   system.serial_number:
     description: System serial number.
     type: string
+    requirement_level: recommended
   system.sku:
     description: System sku.
     type: string
+    requirement_level: recommended
   system.system_type:
     description: System type.
     type: string
+    requirement_level: recommended
   temperature.name:
     description: Temperature name.
     type: string
+    requirement_level: required
 
 metrics:
   chassis.powerstate:

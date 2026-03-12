@@ -1,0 +1,5 @@
+change_type: enhancement
+component: receiver/redfish
+note: Enable re-aggregation feature by setting `reaggregation_enabled` and adding `requirement_level` to metric attributes.
+issues: [46375]
+sub_components: []

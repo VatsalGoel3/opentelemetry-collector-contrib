@@ -24,7 +24,7 @@ Measures the power state of a chassis (-1 unknown, 0 off, 1 on).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
 | chassis.asset_tag | Chassis asset tag. | Any Str | Recommended |
 | chassis.model | Chassis model. | Any Str | Recommended |
 | chassis.name | Chassis name. | Any Str | Recommended |
@@ -45,7 +45,7 @@ Measures the health of a chassis (-1 unknown, 0 critical, 1 ok, 2 warning).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
 | chassis.asset_tag | Chassis asset tag. | Any Str | Recommended |
 | chassis.model | Chassis model. | Any Str | Recommended |
 | chassis.name | Chassis name. | Any Str | Recommended |
@@ -66,7 +66,7 @@ Measures the state of a chassis (-1 unknown, 0 disabled, 1 enabled).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
 | chassis.asset_tag | Chassis asset tag. | Any Str | Recommended |
 | chassis.model | Chassis model. | Any Str | Recommended |
 | chassis.name | Chassis name. | Any Str | Recommended |
@@ -87,8 +87,8 @@ Measures the reading of a chassis fan.
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
-| fan.name | Fan name. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
+| fan.name | Fan name. | Any Str | Required |
 | fan.reading_units | Fan reading units. | Any Str | Recommended |
 
 ### fan.status.health
@@ -103,8 +103,8 @@ Measures the health of a chassis fan (-1 unknown, 0 critical, 1 ok, 2 warning).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
-| fan.name | Fan name. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
+| fan.name | Fan name. | Any Str | Required |
 
 ### fan.status.state
 
@@ -118,8 +118,8 @@ Measures the state of a chassis fan (-1 unknown, 0 disabled, 1 enabled).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
-| fan.name | Fan name. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
+| fan.name | Fan name. | Any Str | Required |
 
 ### system.powerstate
 
@@ -133,7 +133,7 @@ Measures the power state of a system (-1 unknown, 0 off, 1 on).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| system.id | System id. | Any Str | Recommended |
+| system.id | System id. | Any Str | Required |
 | system.asset_tag | System asset tag. | Any Str | Recommended |
 | system.bios_version | System bios version. | Any Str | Recommended |
 | system.model | System model. | Any Str | Recommended |
@@ -155,7 +155,7 @@ Measures the health of a system (-1 unknown, 0 critical, 1 ok, 2 warning).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| system.id | System id. | Any Str | Recommended |
+| system.id | System id. | Any Str | Required |
 | system.asset_tag | System asset tag. | Any Str | Recommended |
 | system.bios_version | System bios version. | Any Str | Recommended |
 | system.model | System model. | Any Str | Recommended |
@@ -177,7 +177,7 @@ Measures the state of a system (-1 unknown, 0 disabled, 1 enabled).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| system.id | System id. | Any Str | Recommended |
+| system.id | System id. | Any Str | Required |
 | system.asset_tag | System asset tag. | Any Str | Recommended |
 | system.bios_version | System bios version. | Any Str | Recommended |
 | system.model | System model. | Any Str | Recommended |
@@ -199,8 +199,8 @@ Measures the reading of a chassis temperature.
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
-| temperature.name | Temperature name. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
+| temperature.name | Temperature name. | Any Str | Required |
 
 ### temperature.status.health
 
@@ -214,8 +214,8 @@ Measures the health of a chassis temperature (-1 unknown, 0 critical, 1 ok, 2 wa
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
-| temperature.name | Temperature name. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
+| temperature.name | Temperature name. | Any Str | Required |
 
 ### temperature.status.state
 
@@ -229,8 +229,8 @@ Measures the state of a chassis temperature (-1 unknown, 0 disabled, 1 enabled).
 
 | Name | Description | Values | Requirement Level |
 | ---- | ----------- | ------ | -------- |
-| chassis.id | Chassis id. | Any Str | Recommended |
-| temperature.name | Temperature name. | Any Str | Recommended |
+| chassis.id | Chassis id. | Any Str | Required |
+| temperature.name | Temperature name. | Any Str | Required |
 
 ## Resource Attributes
 

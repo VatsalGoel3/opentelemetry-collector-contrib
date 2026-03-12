@@ -3,17 +3,507 @@
 package metadata
 
 import (
+	"fmt"
+	"slices"
+
 	"go.opentelemetry.io/collector/confmap"
 	"go.opentelemetry.io/collector/filter"
 )
 
-// MetricConfig provides common config for a particular metric.
-type MetricConfig struct {
+// ChassisPowerstateAttributeKey specifies the key of an attribute for the chassis.powerstate metric.
+type ChassisPowerstateAttributeKey string
+
+const (
+	ChassisPowerstateAttributeKeyChassisID           ChassisPowerstateAttributeKey = "chassis.id"
+	ChassisPowerstateAttributeKeyChassisAssetTag     ChassisPowerstateAttributeKey = "chassis.asset_tag"
+	ChassisPowerstateAttributeKeyChassisModel        ChassisPowerstateAttributeKey = "chassis.model"
+	ChassisPowerstateAttributeKeyChassisName         ChassisPowerstateAttributeKey = "chassis.name"
+	ChassisPowerstateAttributeKeyChassisManufacturer ChassisPowerstateAttributeKey = "chassis.manufacturer"
+	ChassisPowerstateAttributeKeyChassisSerialNumber ChassisPowerstateAttributeKey = "chassis.serial_number"
+	ChassisPowerstateAttributeKeyChassisSku          ChassisPowerstateAttributeKey = "chassis.sku"
+	ChassisPowerstateAttributeKeyChassisChassisType  ChassisPowerstateAttributeKey = "chassis.chassis_type"
+)
+
+// ChassisPowerstateConfig provides config for the chassis.powerstate metric.
+type ChassisPowerstateConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                          `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []ChassisPowerstateAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *ChassisPowerstateConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *ChassisPowerstateConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case ChassisPowerstateAttributeKeyChassisID, ChassisPowerstateAttributeKeyChassisAssetTag, ChassisPowerstateAttributeKeyChassisModel, ChassisPowerstateAttributeKeyChassisName, ChassisPowerstateAttributeKeyChassisManufacturer, ChassisPowerstateAttributeKeyChassisSerialNumber, ChassisPowerstateAttributeKeyChassisSku, ChassisPowerstateAttributeKeyChassisChassisType:
+		default:
+			return fmt.Errorf("metric chassis.powerstate doesn't have an attribute %v, valid attributes: [chassis.id, chassis.asset_tag, chassis.model, chassis.name, chassis.manufacturer, chassis.serial_number, chassis.sku, chassis.chassis_type]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, ChassisPowerstateAttributeKeyChassisID) {
+		return fmt.Errorf("chassis.id is a required attribute for chassis.powerstate metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// ChassisStatusHealthAttributeKey specifies the key of an attribute for the chassis.status.health metric.
+type ChassisStatusHealthAttributeKey string
+
+const (
+	ChassisStatusHealthAttributeKeyChassisID           ChassisStatusHealthAttributeKey = "chassis.id"
+	ChassisStatusHealthAttributeKeyChassisAssetTag     ChassisStatusHealthAttributeKey = "chassis.asset_tag"
+	ChassisStatusHealthAttributeKeyChassisModel        ChassisStatusHealthAttributeKey = "chassis.model"
+	ChassisStatusHealthAttributeKeyChassisName         ChassisStatusHealthAttributeKey = "chassis.name"
+	ChassisStatusHealthAttributeKeyChassisManufacturer ChassisStatusHealthAttributeKey = "chassis.manufacturer"
+	ChassisStatusHealthAttributeKeyChassisSerialNumber ChassisStatusHealthAttributeKey = "chassis.serial_number"
+	ChassisStatusHealthAttributeKeyChassisSku          ChassisStatusHealthAttributeKey = "chassis.sku"
+	ChassisStatusHealthAttributeKeyChassisChassisType  ChassisStatusHealthAttributeKey = "chassis.chassis_type"
+)
+
+// ChassisStatusHealthConfig provides config for the chassis.status.health metric.
+type ChassisStatusHealthConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                            `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []ChassisStatusHealthAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *ChassisStatusHealthConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *ChassisStatusHealthConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case ChassisStatusHealthAttributeKeyChassisID, ChassisStatusHealthAttributeKeyChassisAssetTag, ChassisStatusHealthAttributeKeyChassisModel, ChassisStatusHealthAttributeKeyChassisName, ChassisStatusHealthAttributeKeyChassisManufacturer, ChassisStatusHealthAttributeKeyChassisSerialNumber, ChassisStatusHealthAttributeKeyChassisSku, ChassisStatusHealthAttributeKeyChassisChassisType:
+		default:
+			return fmt.Errorf("metric chassis.status.health doesn't have an attribute %v, valid attributes: [chassis.id, chassis.asset_tag, chassis.model, chassis.name, chassis.manufacturer, chassis.serial_number, chassis.sku, chassis.chassis_type]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, ChassisStatusHealthAttributeKeyChassisID) {
+		return fmt.Errorf("chassis.id is a required attribute for chassis.status.health metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// ChassisStatusStateAttributeKey specifies the key of an attribute for the chassis.status.state metric.
+type ChassisStatusStateAttributeKey string
+
+const (
+	ChassisStatusStateAttributeKeyChassisID           ChassisStatusStateAttributeKey = "chassis.id"
+	ChassisStatusStateAttributeKeyChassisAssetTag     ChassisStatusStateAttributeKey = "chassis.asset_tag"
+	ChassisStatusStateAttributeKeyChassisModel        ChassisStatusStateAttributeKey = "chassis.model"
+	ChassisStatusStateAttributeKeyChassisName         ChassisStatusStateAttributeKey = "chassis.name"
+	ChassisStatusStateAttributeKeyChassisManufacturer ChassisStatusStateAttributeKey = "chassis.manufacturer"
+	ChassisStatusStateAttributeKeyChassisSerialNumber ChassisStatusStateAttributeKey = "chassis.serial_number"
+	ChassisStatusStateAttributeKeyChassisSku          ChassisStatusStateAttributeKey = "chassis.sku"
+	ChassisStatusStateAttributeKeyChassisChassisType  ChassisStatusStateAttributeKey = "chassis.chassis_type"
+)
+
+// ChassisStatusStateConfig provides config for the chassis.status.state metric.
+type ChassisStatusStateConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                           `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []ChassisStatusStateAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *ChassisStatusStateConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *ChassisStatusStateConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case ChassisStatusStateAttributeKeyChassisID, ChassisStatusStateAttributeKeyChassisAssetTag, ChassisStatusStateAttributeKeyChassisModel, ChassisStatusStateAttributeKeyChassisName, ChassisStatusStateAttributeKeyChassisManufacturer, ChassisStatusStateAttributeKeyChassisSerialNumber, ChassisStatusStateAttributeKeyChassisSku, ChassisStatusStateAttributeKeyChassisChassisType:
+		default:
+			return fmt.Errorf("metric chassis.status.state doesn't have an attribute %v, valid attributes: [chassis.id, chassis.asset_tag, chassis.model, chassis.name, chassis.manufacturer, chassis.serial_number, chassis.sku, chassis.chassis_type]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, ChassisStatusStateAttributeKeyChassisID) {
+		return fmt.Errorf("chassis.id is a required attribute for chassis.status.state metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// FanReadingAttributeKey specifies the key of an attribute for the fan.reading metric.
+type FanReadingAttributeKey string
+
+const (
+	FanReadingAttributeKeyChassisID       FanReadingAttributeKey = "chassis.id"
+	FanReadingAttributeKeyFanName         FanReadingAttributeKey = "fan.name"
+	FanReadingAttributeKeyFanReadingUnits FanReadingAttributeKey = "fan.reading_units"
+)
+
+// FanReadingConfig provides config for the fan.reading metric.
+type FanReadingConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                   `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []FanReadingAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *FanReadingConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *FanReadingConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case FanReadingAttributeKeyChassisID, FanReadingAttributeKeyFanName, FanReadingAttributeKeyFanReadingUnits:
+		default:
+			return fmt.Errorf("metric fan.reading doesn't have an attribute %v, valid attributes: [chassis.id, fan.name, fan.reading_units]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, FanReadingAttributeKeyChassisID) {
+		return fmt.Errorf("chassis.id is a required attribute for fan.reading metric and must be included")
+	}
+	if !slices.Contains(ms.EnabledAttributes, FanReadingAttributeKeyFanName) {
+		return fmt.Errorf("fan.name is a required attribute for fan.reading metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// FanStatusHealthConfig provides config for the fan.status.health metric.
+type FanStatusHealthConfig struct {
 	Enabled          bool `mapstructure:"enabled"`
 	enabledSetByUser bool
 }
 
-func (ms *MetricConfig) Unmarshal(parser *confmap.Conf) error {
+func (ms *FanStatusHealthConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+// FanStatusStateConfig provides config for the fan.status.state metric.
+type FanStatusStateConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+}
+
+func (ms *FanStatusStateConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+// SystemPowerstateAttributeKey specifies the key of an attribute for the system.powerstate metric.
+type SystemPowerstateAttributeKey string
+
+const (
+	SystemPowerstateAttributeKeySystemID           SystemPowerstateAttributeKey = "system.id"
+	SystemPowerstateAttributeKeySystemAssetTag     SystemPowerstateAttributeKey = "system.asset_tag"
+	SystemPowerstateAttributeKeySystemBiosVersion  SystemPowerstateAttributeKey = "system.bios_version"
+	SystemPowerstateAttributeKeySystemModel        SystemPowerstateAttributeKey = "system.model"
+	SystemPowerstateAttributeKeySystemName         SystemPowerstateAttributeKey = "system.name"
+	SystemPowerstateAttributeKeySystemManufacturer SystemPowerstateAttributeKey = "system.manufacturer"
+	SystemPowerstateAttributeKeySystemSerialNumber SystemPowerstateAttributeKey = "system.serial_number"
+	SystemPowerstateAttributeKeySystemSku          SystemPowerstateAttributeKey = "system.sku"
+	SystemPowerstateAttributeKeySystemSystemType   SystemPowerstateAttributeKey = "system.system_type"
+)
+
+// SystemPowerstateConfig provides config for the system.powerstate metric.
+type SystemPowerstateConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                         `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []SystemPowerstateAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *SystemPowerstateConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *SystemPowerstateConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case SystemPowerstateAttributeKeySystemID, SystemPowerstateAttributeKeySystemAssetTag, SystemPowerstateAttributeKeySystemBiosVersion, SystemPowerstateAttributeKeySystemModel, SystemPowerstateAttributeKeySystemName, SystemPowerstateAttributeKeySystemManufacturer, SystemPowerstateAttributeKeySystemSerialNumber, SystemPowerstateAttributeKeySystemSku, SystemPowerstateAttributeKeySystemSystemType:
+		default:
+			return fmt.Errorf("metric system.powerstate doesn't have an attribute %v, valid attributes: [system.id, system.asset_tag, system.bios_version, system.model, system.name, system.manufacturer, system.serial_number, system.sku, system.system_type]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, SystemPowerstateAttributeKeySystemID) {
+		return fmt.Errorf("system.id is a required attribute for system.powerstate metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// SystemStatusHealthAttributeKey specifies the key of an attribute for the system.status.health metric.
+type SystemStatusHealthAttributeKey string
+
+const (
+	SystemStatusHealthAttributeKeySystemID           SystemStatusHealthAttributeKey = "system.id"
+	SystemStatusHealthAttributeKeySystemAssetTag     SystemStatusHealthAttributeKey = "system.asset_tag"
+	SystemStatusHealthAttributeKeySystemBiosVersion  SystemStatusHealthAttributeKey = "system.bios_version"
+	SystemStatusHealthAttributeKeySystemModel        SystemStatusHealthAttributeKey = "system.model"
+	SystemStatusHealthAttributeKeySystemName         SystemStatusHealthAttributeKey = "system.name"
+	SystemStatusHealthAttributeKeySystemManufacturer SystemStatusHealthAttributeKey = "system.manufacturer"
+	SystemStatusHealthAttributeKeySystemSerialNumber SystemStatusHealthAttributeKey = "system.serial_number"
+	SystemStatusHealthAttributeKeySystemSku          SystemStatusHealthAttributeKey = "system.sku"
+	SystemStatusHealthAttributeKeySystemSystemType   SystemStatusHealthAttributeKey = "system.system_type"
+)
+
+// SystemStatusHealthConfig provides config for the system.status.health metric.
+type SystemStatusHealthConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                           `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []SystemStatusHealthAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *SystemStatusHealthConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *SystemStatusHealthConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case SystemStatusHealthAttributeKeySystemID, SystemStatusHealthAttributeKeySystemAssetTag, SystemStatusHealthAttributeKeySystemBiosVersion, SystemStatusHealthAttributeKeySystemModel, SystemStatusHealthAttributeKeySystemName, SystemStatusHealthAttributeKeySystemManufacturer, SystemStatusHealthAttributeKeySystemSerialNumber, SystemStatusHealthAttributeKeySystemSku, SystemStatusHealthAttributeKeySystemSystemType:
+		default:
+			return fmt.Errorf("metric system.status.health doesn't have an attribute %v, valid attributes: [system.id, system.asset_tag, system.bios_version, system.model, system.name, system.manufacturer, system.serial_number, system.sku, system.system_type]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, SystemStatusHealthAttributeKeySystemID) {
+		return fmt.Errorf("system.id is a required attribute for system.status.health metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// SystemStatusStateAttributeKey specifies the key of an attribute for the system.status.state metric.
+type SystemStatusStateAttributeKey string
+
+const (
+	SystemStatusStateAttributeKeySystemID           SystemStatusStateAttributeKey = "system.id"
+	SystemStatusStateAttributeKeySystemAssetTag     SystemStatusStateAttributeKey = "system.asset_tag"
+	SystemStatusStateAttributeKeySystemBiosVersion  SystemStatusStateAttributeKey = "system.bios_version"
+	SystemStatusStateAttributeKeySystemModel        SystemStatusStateAttributeKey = "system.model"
+	SystemStatusStateAttributeKeySystemName         SystemStatusStateAttributeKey = "system.name"
+	SystemStatusStateAttributeKeySystemManufacturer SystemStatusStateAttributeKey = "system.manufacturer"
+	SystemStatusStateAttributeKeySystemSerialNumber SystemStatusStateAttributeKey = "system.serial_number"
+	SystemStatusStateAttributeKeySystemSku          SystemStatusStateAttributeKey = "system.sku"
+	SystemStatusStateAttributeKeySystemSystemType   SystemStatusStateAttributeKey = "system.system_type"
+)
+
+// SystemStatusStateConfig provides config for the system.status.state metric.
+type SystemStatusStateConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+
+	AggregationStrategy string                          `mapstructure:"aggregation_strategy"`
+	EnabledAttributes   []SystemStatusStateAttributeKey `mapstructure:"attributes"`
+}
+
+func (ms *SystemStatusStateConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+func (ms *SystemStatusStateConfig) Validate() error {
+	for _, val := range ms.EnabledAttributes {
+		switch val {
+		case SystemStatusStateAttributeKeySystemID, SystemStatusStateAttributeKeySystemAssetTag, SystemStatusStateAttributeKeySystemBiosVersion, SystemStatusStateAttributeKeySystemModel, SystemStatusStateAttributeKeySystemName, SystemStatusStateAttributeKeySystemManufacturer, SystemStatusStateAttributeKeySystemSerialNumber, SystemStatusStateAttributeKeySystemSku, SystemStatusStateAttributeKeySystemSystemType:
+		default:
+			return fmt.Errorf("metric system.status.state doesn't have an attribute %v, valid attributes: [system.id, system.asset_tag, system.bios_version, system.model, system.name, system.manufacturer, system.serial_number, system.sku, system.system_type]", val)
+		}
+	}
+	if !slices.Contains(ms.EnabledAttributes, SystemStatusStateAttributeKeySystemID) {
+		return fmt.Errorf("system.id is a required attribute for system.status.state metric and must be included")
+	}
+
+	switch ms.AggregationStrategy {
+	case AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax:
+	default:
+		return fmt.Errorf("invalid aggregation strategy %q, valid strategies: [%s, %s, %s, %s]", ms.AggregationStrategy, AggregationStrategySum, AggregationStrategyAvg, AggregationStrategyMin, AggregationStrategyMax)
+	}
+
+	return nil
+}
+
+// TemperatureReadingConfig provides config for the temperature.reading metric.
+type TemperatureReadingConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+}
+
+func (ms *TemperatureReadingConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+// TemperatureStatusHealthConfig provides config for the temperature.status.health metric.
+type TemperatureStatusHealthConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+}
+
+func (ms *TemperatureStatusHealthConfig) Unmarshal(parser *confmap.Conf) error {
+	if parser == nil {
+		return nil
+	}
+
+	err := parser.Unmarshal(ms)
+	if err != nil {
+		return err
+	}
+
+	ms.enabledSetByUser = parser.IsSet("enabled")
+	return nil
+}
+
+// TemperatureStatusStateConfig provides config for the temperature.status.state metric.
+type TemperatureStatusStateConfig struct {
+	Enabled          bool `mapstructure:"enabled"`
+	enabledSetByUser bool
+}
+
+func (ms *TemperatureStatusStateConfig) Unmarshal(parser *confmap.Conf) error {
 	if parser == nil {
 		return nil
 	}
@@ -29,56 +519,70 @@ func (ms *MetricConfig) Unmarshal(parser *confmap.Conf) error {
 
 // MetricsConfig provides config for redfish metrics.
 type MetricsConfig struct {
-	ChassisPowerstate       MetricConfig `mapstructure:"chassis.powerstate"`
-	ChassisStatusHealth     MetricConfig `mapstructure:"chassis.status.health"`
-	ChassisStatusState      MetricConfig `mapstructure:"chassis.status.state"`
-	FanReading              MetricConfig `mapstructure:"fan.reading"`
-	FanStatusHealth         MetricConfig `mapstructure:"fan.status.health"`
-	FanStatusState          MetricConfig `mapstructure:"fan.status.state"`
-	SystemPowerstate        MetricConfig `mapstructure:"system.powerstate"`
-	SystemStatusHealth      MetricConfig `mapstructure:"system.status.health"`
-	SystemStatusState       MetricConfig `mapstructure:"system.status.state"`
-	TemperatureReading      MetricConfig `mapstructure:"temperature.reading"`
-	TemperatureStatusHealth MetricConfig `mapstructure:"temperature.status.health"`
-	TemperatureStatusState  MetricConfig `mapstructure:"temperature.status.state"`
+	ChassisPowerstate       ChassisPowerstateConfig       `mapstructure:"chassis.powerstate"`
+	ChassisStatusHealth     ChassisStatusHealthConfig     `mapstructure:"chassis.status.health"`
+	ChassisStatusState      ChassisStatusStateConfig      `mapstructure:"chassis.status.state"`
+	FanReading              FanReadingConfig              `mapstructure:"fan.reading"`
+	FanStatusHealth         FanStatusHealthConfig         `mapstructure:"fan.status.health"`
+	FanStatusState          FanStatusStateConfig          `mapstructure:"fan.status.state"`
+	SystemPowerstate        SystemPowerstateConfig        `mapstructure:"system.powerstate"`
+	SystemStatusHealth      SystemStatusHealthConfig      `mapstructure:"system.status.health"`
+	SystemStatusState       SystemStatusStateConfig       `mapstructure:"system.status.state"`
+	TemperatureReading      TemperatureReadingConfig      `mapstructure:"temperature.reading"`
+	TemperatureStatusHealth TemperatureStatusHealthConfig `mapstructure:"temperature.status.health"`
+	TemperatureStatusState  TemperatureStatusStateConfig  `mapstructure:"temperature.status.state"`
 }
 
 func DefaultMetricsConfig() MetricsConfig {
 	return MetricsConfig{
-		ChassisPowerstate: MetricConfig{
+		ChassisPowerstate: ChassisPowerstateConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []ChassisPowerstateAttributeKey{ChassisPowerstateAttributeKeyChassisID, ChassisPowerstateAttributeKeyChassisAssetTag, ChassisPowerstateAttributeKeyChassisModel, ChassisPowerstateAttributeKeyChassisName, ChassisPowerstateAttributeKeyChassisManufacturer, ChassisPowerstateAttributeKeyChassisSerialNumber, ChassisPowerstateAttributeKeyChassisSku, ChassisPowerstateAttributeKeyChassisChassisType},
+		},
+		ChassisStatusHealth: ChassisStatusHealthConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []ChassisStatusHealthAttributeKey{ChassisStatusHealthAttributeKeyChassisID, ChassisStatusHealthAttributeKeyChassisAssetTag, ChassisStatusHealthAttributeKeyChassisModel, ChassisStatusHealthAttributeKeyChassisName, ChassisStatusHealthAttributeKeyChassisManufacturer, ChassisStatusHealthAttributeKeyChassisSerialNumber, ChassisStatusHealthAttributeKeyChassisSku, ChassisStatusHealthAttributeKeyChassisChassisType},
+		},
+		ChassisStatusState: ChassisStatusStateConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []ChassisStatusStateAttributeKey{ChassisStatusStateAttributeKeyChassisID, ChassisStatusStateAttributeKeyChassisAssetTag, ChassisStatusStateAttributeKeyChassisModel, ChassisStatusStateAttributeKeyChassisName, ChassisStatusStateAttributeKeyChassisManufacturer, ChassisStatusStateAttributeKeyChassisSerialNumber, ChassisStatusStateAttributeKeyChassisSku, ChassisStatusStateAttributeKeyChassisChassisType},
+		},
+		FanReading: FanReadingConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []FanReadingAttributeKey{FanReadingAttributeKeyChassisID, FanReadingAttributeKeyFanName, FanReadingAttributeKeyFanReadingUnits},
+		},
+		FanStatusHealth: FanStatusHealthConfig{
 			Enabled: true,
 		},
-		ChassisStatusHealth: MetricConfig{
+		FanStatusState: FanStatusStateConfig{
 			Enabled: true,
 		},
-		ChassisStatusState: MetricConfig{
+		SystemPowerstate: SystemPowerstateConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []SystemPowerstateAttributeKey{SystemPowerstateAttributeKeySystemID, SystemPowerstateAttributeKeySystemAssetTag, SystemPowerstateAttributeKeySystemBiosVersion, SystemPowerstateAttributeKeySystemModel, SystemPowerstateAttributeKeySystemName, SystemPowerstateAttributeKeySystemManufacturer, SystemPowerstateAttributeKeySystemSerialNumber, SystemPowerstateAttributeKeySystemSku, SystemPowerstateAttributeKeySystemSystemType},
+		},
+		SystemStatusHealth: SystemStatusHealthConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []SystemStatusHealthAttributeKey{SystemStatusHealthAttributeKeySystemID, SystemStatusHealthAttributeKeySystemAssetTag, SystemStatusHealthAttributeKeySystemBiosVersion, SystemStatusHealthAttributeKeySystemModel, SystemStatusHealthAttributeKeySystemName, SystemStatusHealthAttributeKeySystemManufacturer, SystemStatusHealthAttributeKeySystemSerialNumber, SystemStatusHealthAttributeKeySystemSku, SystemStatusHealthAttributeKeySystemSystemType},
+		},
+		SystemStatusState: SystemStatusStateConfig{
+			Enabled:             true,
+			AggregationStrategy: AggregationStrategyAvg,
+			EnabledAttributes:   []SystemStatusStateAttributeKey{SystemStatusStateAttributeKeySystemID, SystemStatusStateAttributeKeySystemAssetTag, SystemStatusStateAttributeKeySystemBiosVersion, SystemStatusStateAttributeKeySystemModel, SystemStatusStateAttributeKeySystemName, SystemStatusStateAttributeKeySystemManufacturer, SystemStatusStateAttributeKeySystemSerialNumber, SystemStatusStateAttributeKeySystemSku, SystemStatusStateAttributeKeySystemSystemType},
+		},
+		TemperatureReading: TemperatureReadingConfig{
 			Enabled: true,
 		},
-		FanReading: MetricConfig{
+		TemperatureStatusHealth: TemperatureStatusHealthConfig{
 			Enabled: true,
 		},
-		FanStatusHealth: MetricConfig{
-			Enabled: true,
-		},
-		FanStatusState: MetricConfig{
-			Enabled: true,
-		},
-		SystemPowerstate: MetricConfig{
-			Enabled: true,
-		},
-		SystemStatusHealth: MetricConfig{
-			Enabled: true,
-		},
-		SystemStatusState: MetricConfig{
-			Enabled: true,
-		},
-		TemperatureReading: MetricConfig{
-			Enabled: true,
-		},
-		TemperatureStatusHealth: MetricConfig{
-			Enabled: true,
-		},
-		TemperatureStatusState: MetricConfig{
+		TemperatureStatusState: TemperatureStatusStateConfig{
 			Enabled: true,
 		},
 	}
