@@ -5,7 +5,7 @@ $defs:
     type: object
     properties:
       saphana.alert.count:
-        description: "SaphanaAlertCountConfig provides config for the saphana.alert.count metric."
+        description: "SaphanaAlertCountMetricConfig provides config for the saphana.alert.count metric."
         type: object
         properties:
           enabled:
@@ -28,14 +28,14 @@ $defs:
             default:
               - "rating"
       saphana.backup.latest:
-        description: "SaphanaBackupLatestConfig provides config for the saphana.backup.latest metric."
+        description: "SaphanaBackupLatestMetricConfig provides config for the saphana.backup.latest metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.column.memory.used:
-        description: "SaphanaColumnMemoryUsedConfig provides config for the saphana.column.memory.used metric."
+        description: "SaphanaColumnMemoryUsedMetricConfig provides config for the saphana.column.memory.used metric."
         type: object
         properties:
           enabled:
@@ -60,7 +60,7 @@ $defs:
               - "type"
               - "subtype"
       saphana.component.memory.used:
-        description: "SaphanaComponentMemoryUsedConfig provides config for the saphana.component.memory.used metric."
+        description: "SaphanaComponentMemoryUsedMetricConfig provides config for the saphana.component.memory.used metric."
         type: object
         properties:
           enabled:
@@ -83,7 +83,7 @@ $defs:
             default:
               - "component"
       saphana.connection.count:
-        description: "SaphanaConnectionCountConfig provides config for the saphana.connection.count metric."
+        description: "SaphanaConnectionCountMetricConfig provides config for the saphana.connection.count metric."
         type: object
         properties:
           enabled:
@@ -106,14 +106,14 @@ $defs:
             default:
               - "status"
       saphana.cpu.used:
-        description: "SaphanaCPUUsedConfig provides config for the saphana.cpu.used metric."
+        description: "SaphanaCPUUsedMetricConfig provides config for the saphana.cpu.used metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.disk.size.current:
-        description: "SaphanaDiskSizeCurrentConfig provides config for the saphana.disk.size.current metric."
+        description: "SaphanaDiskSizeCurrentMetricConfig provides config for the saphana.disk.size.current metric."
         type: object
         properties:
           enabled:
@@ -140,7 +140,7 @@ $defs:
               - "usage_type"
               - "state"
       saphana.host.memory.current:
-        description: "SaphanaHostMemoryCurrentConfig provides config for the saphana.host.memory.current metric."
+        description: "SaphanaHostMemoryCurrentMetricConfig provides config for the saphana.host.memory.current metric."
         type: object
         properties:
           enabled:
@@ -163,7 +163,7 @@ $defs:
             default:
               - "state"
       saphana.host.swap.current:
-        description: "SaphanaHostSwapCurrentConfig provides config for the saphana.host.swap.current metric."
+        description: "SaphanaHostSwapCurrentMetricConfig provides config for the saphana.host.swap.current metric."
         type: object
         properties:
           enabled:
@@ -186,14 +186,14 @@ $defs:
             default:
               - "state"
       saphana.instance.code_size:
-        description: "SaphanaInstanceCodeSizeConfig provides config for the saphana.instance.code_size metric."
+        description: "SaphanaInstanceCodeSizeMetricConfig provides config for the saphana.instance.code_size metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.instance.memory.current:
-        description: "SaphanaInstanceMemoryCurrentConfig provides config for the saphana.instance.memory.current metric."
+        description: "SaphanaInstanceMemoryCurrentMetricConfig provides config for the saphana.instance.memory.current metric."
         type: object
         properties:
           enabled:
@@ -216,21 +216,21 @@ $defs:
             default:
               - "state"
       saphana.instance.memory.shared.allocated:
-        description: "SaphanaInstanceMemorySharedAllocatedConfig provides config for the saphana.instance.memory.shared.allocated metric."
+        description: "SaphanaInstanceMemorySharedAllocatedMetricConfig provides config for the saphana.instance.memory.shared.allocated metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.instance.memory.used.peak:
-        description: "SaphanaInstanceMemoryUsedPeakConfig provides config for the saphana.instance.memory.used.peak metric."
+        description: "SaphanaInstanceMemoryUsedPeakMetricConfig provides config for the saphana.instance.memory.used.peak metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.license.expiration.time:
-        description: "SaphanaLicenseExpirationTimeConfig provides config for the saphana.license.expiration.time metric."
+        description: "SaphanaLicenseExpirationTimeMetricConfig provides config for the saphana.license.expiration.time metric."
         type: object
         properties:
           enabled:
@@ -255,7 +255,7 @@ $defs:
               - "system"
               - "product"
       saphana.license.limit:
-        description: "SaphanaLicenseLimitConfig provides config for the saphana.license.limit metric."
+        description: "SaphanaLicenseLimitMetricConfig provides config for the saphana.license.limit metric."
         type: object
         properties:
           enabled:
@@ -280,7 +280,7 @@ $defs:
               - "system"
               - "product"
       saphana.license.peak:
-        description: "SaphanaLicensePeakConfig provides config for the saphana.license.peak metric."
+        description: "SaphanaLicensePeakMetricConfig provides config for the saphana.license.peak metric."
         type: object
         properties:
           enabled:
@@ -305,14 +305,14 @@ $defs:
               - "system"
               - "product"
       saphana.network.request.average_time:
-        description: "SaphanaNetworkRequestAverageTimeConfig provides config for the saphana.network.request.average_time metric."
+        description: "SaphanaNetworkRequestAverageTimeMetricConfig provides config for the saphana.network.request.average_time metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.network.request.count:
-        description: "SaphanaNetworkRequestCountConfig provides config for the saphana.network.request.count metric."
+        description: "SaphanaNetworkRequestCountMetricConfig provides config for the saphana.network.request.count metric."
         type: object
         properties:
           enabled:
@@ -335,14 +335,14 @@ $defs:
             default:
               - "state"
       saphana.network.request.finished.count:
-        description: "SaphanaNetworkRequestFinishedCountConfig provides config for the saphana.network.request.finished.count metric."
+        description: "SaphanaNetworkRequestFinishedCountMetricConfig provides config for the saphana.network.request.finished.count metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.replication.average_time:
-        description: "SaphanaReplicationAverageTimeConfig provides config for the saphana.replication.average_time metric."
+        description: "SaphanaReplicationAverageTimeMetricConfig provides config for the saphana.replication.average_time metric."
         type: object
         properties:
           enabled:
@@ -371,7 +371,7 @@ $defs:
               - "port"
               - "mode"
       saphana.replication.backlog.size:
-        description: "SaphanaReplicationBacklogSizeConfig provides config for the saphana.replication.backlog.size metric."
+        description: "SaphanaReplicationBacklogSizeMetricConfig provides config for the saphana.replication.backlog.size metric."
         type: object
         properties:
           enabled:
@@ -400,7 +400,7 @@ $defs:
               - "port"
               - "mode"
       saphana.replication.backlog.time:
-        description: "SaphanaReplicationBacklogTimeConfig provides config for the saphana.replication.backlog.time metric."
+        description: "SaphanaReplicationBacklogTimeMetricConfig provides config for the saphana.replication.backlog.time metric."
         type: object
         properties:
           enabled:
@@ -429,7 +429,7 @@ $defs:
               - "port"
               - "mode"
       saphana.row_store.memory.used:
-        description: "SaphanaRowStoreMemoryUsedConfig provides config for the saphana.row_store.memory.used metric."
+        description: "SaphanaRowStoreMemoryUsedMetricConfig provides config for the saphana.row_store.memory.used metric."
         type: object
         properties:
           enabled:
@@ -452,7 +452,7 @@ $defs:
             default:
               - "type"
       saphana.schema.memory.used.current:
-        description: "SaphanaSchemaMemoryUsedCurrentConfig provides config for the saphana.schema.memory.used.current metric."
+        description: "SaphanaSchemaMemoryUsedCurrentMetricConfig provides config for the saphana.schema.memory.used.current metric."
         type: object
         properties:
           enabled:
@@ -477,28 +477,28 @@ $defs:
               - "schema"
               - "type"
       saphana.schema.memory.used.max:
-        description: "SaphanaSchemaMemoryUsedMaxConfig provides config for the saphana.schema.memory.used.max metric."
+        description: "SaphanaSchemaMemoryUsedMaxMetricConfig provides config for the saphana.schema.memory.used.max metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.schema.operation.count:
-        description: "SaphanaSchemaOperationCountConfig provides config for the saphana.schema.operation.count metric."
+        description: "SaphanaSchemaOperationCountMetricConfig provides config for the saphana.schema.operation.count metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.schema.record.compressed.count:
-        description: "SaphanaSchemaRecordCompressedCountConfig provides config for the saphana.schema.record.compressed.count metric."
+        description: "SaphanaSchemaRecordCompressedCountMetricConfig provides config for the saphana.schema.record.compressed.count metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.schema.record.count:
-        description: "SaphanaSchemaRecordCountConfig provides config for the saphana.schema.record.count metric."
+        description: "SaphanaSchemaRecordCountMetricConfig provides config for the saphana.schema.record.count metric."
         type: object
         properties:
           enabled:
@@ -523,7 +523,7 @@ $defs:
               - "schema"
               - "type"
       saphana.service.code_size:
-        description: "SaphanaServiceCodeSizeConfig provides config for the saphana.service.code_size metric."
+        description: "SaphanaServiceCodeSizeMetricConfig provides config for the saphana.service.code_size metric."
         type: object
         properties:
           enabled:
@@ -546,7 +546,7 @@ $defs:
             default:
               - "service"
       saphana.service.count:
-        description: "SaphanaServiceCountConfig provides config for the saphana.service.count metric."
+        description: "SaphanaServiceCountMetricConfig provides config for the saphana.service.count metric."
         type: object
         properties:
           enabled:
@@ -569,7 +569,7 @@ $defs:
             default:
               - "status"
       saphana.service.memory.compactors.allocated:
-        description: "SaphanaServiceMemoryCompactorsAllocatedConfig provides config for the saphana.service.memory.compactors.allocated metric."
+        description: "SaphanaServiceMemoryCompactorsAllocatedMetricConfig provides config for the saphana.service.memory.compactors.allocated metric."
         type: object
         properties:
           enabled:
@@ -592,7 +592,7 @@ $defs:
             default:
               - "service"
       saphana.service.memory.compactors.freeable:
-        description: "SaphanaServiceMemoryCompactorsFreeableConfig provides config for the saphana.service.memory.compactors.freeable metric."
+        description: "SaphanaServiceMemoryCompactorsFreeableMetricConfig provides config for the saphana.service.memory.compactors.freeable metric."
         type: object
         properties:
           enabled:
@@ -615,7 +615,7 @@ $defs:
             default:
               - "service"
       saphana.service.memory.effective_limit:
-        description: "SaphanaServiceMemoryEffectiveLimitConfig provides config for the saphana.service.memory.effective_limit metric."
+        description: "SaphanaServiceMemoryEffectiveLimitMetricConfig provides config for the saphana.service.memory.effective_limit metric."
         type: object
         properties:
           enabled:
@@ -638,7 +638,7 @@ $defs:
             default:
               - "service"
       saphana.service.memory.heap.current:
-        description: "SaphanaServiceMemoryHeapCurrentConfig provides config for the saphana.service.memory.heap.current metric."
+        description: "SaphanaServiceMemoryHeapCurrentMetricConfig provides config for the saphana.service.memory.heap.current metric."
         type: object
         properties:
           enabled:
@@ -663,7 +663,7 @@ $defs:
               - "service"
               - "state"
       saphana.service.memory.limit:
-        description: "SaphanaServiceMemoryLimitConfig provides config for the saphana.service.memory.limit metric."
+        description: "SaphanaServiceMemoryLimitMetricConfig provides config for the saphana.service.memory.limit metric."
         type: object
         properties:
           enabled:
@@ -686,7 +686,7 @@ $defs:
             default:
               - "service"
       saphana.service.memory.shared.current:
-        description: "SaphanaServiceMemorySharedCurrentConfig provides config for the saphana.service.memory.shared.current metric."
+        description: "SaphanaServiceMemorySharedCurrentMetricConfig provides config for the saphana.service.memory.shared.current metric."
         type: object
         properties:
           enabled:
@@ -711,7 +711,7 @@ $defs:
               - "service"
               - "state"
       saphana.service.memory.used:
-        description: "SaphanaServiceMemoryUsedConfig provides config for the saphana.service.memory.used metric."
+        description: "SaphanaServiceMemoryUsedMetricConfig provides config for the saphana.service.memory.used metric."
         type: object
         properties:
           enabled:
@@ -736,7 +736,7 @@ $defs:
               - "service"
               - "type"
       saphana.service.stack_size:
-        description: "SaphanaServiceStackSizeConfig provides config for the saphana.service.stack_size metric."
+        description: "SaphanaServiceStackSizeMetricConfig provides config for the saphana.service.stack_size metric."
         type: object
         properties:
           enabled:
@@ -759,7 +759,7 @@ $defs:
             default:
               - "service"
       saphana.service.thread.count:
-        description: "SaphanaServiceThreadCountConfig provides config for the saphana.service.thread.count metric."
+        description: "SaphanaServiceThreadCountMetricConfig provides config for the saphana.service.thread.count metric."
         type: object
         properties:
           enabled:
@@ -782,21 +782,21 @@ $defs:
             default:
               - "status"
       saphana.transaction.blocked:
-        description: "SaphanaTransactionBlockedConfig provides config for the saphana.transaction.blocked metric."
+        description: "SaphanaTransactionBlockedMetricConfig provides config for the saphana.transaction.blocked metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.transaction.count:
-        description: "SaphanaTransactionCountConfig provides config for the saphana.transaction.count metric."
+        description: "SaphanaTransactionCountMetricConfig provides config for the saphana.transaction.count metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.uptime:
-        description: "SaphanaUptimeConfig provides config for the saphana.uptime metric."
+        description: "SaphanaUptimeMetricConfig provides config for the saphana.uptime metric."
         type: object
         properties:
           enabled:
@@ -821,21 +821,21 @@ $defs:
               - "system"
               - "database"
       saphana.volume.operation.count:
-        description: "SaphanaVolumeOperationCountConfig provides config for the saphana.volume.operation.count metric."
+        description: "SaphanaVolumeOperationCountMetricConfig provides config for the saphana.volume.operation.count metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.volume.operation.size:
-        description: "SaphanaVolumeOperationSizeConfig provides config for the saphana.volume.operation.size metric."
+        description: "SaphanaVolumeOperationSizeMetricConfig provides config for the saphana.volume.operation.size metric."
         type: object
         properties:
           enabled:
             type: boolean
             default: true
       saphana.volume.operation.time:
-        description: "SaphanaVolumeOperationTimeConfig provides config for the saphana.volume.operation.time metric."
+        description: "SaphanaVolumeOperationTimeMetricConfig provides config for the saphana.volume.operation.time metric."
         type: object
         properties:
           enabled:
